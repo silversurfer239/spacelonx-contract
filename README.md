@@ -25,12 +25,17 @@ SpacelonX is an ERC-20 token built on OpenZeppelin v5 contracts (ERC20, ERC20Bur
 
 ## Vesting schedules
 
-| Allocation | % | Cliff | Vesting | Revocable |
-|------------|---|-------|---------|-----------|
-| Team | 15% | 12 months | 36 months | No |
-| Advisors | 5% | 6 months | 24 months | Yes |
-| Treasury | 15% | none | 48 months | No |
-| Ecosystem | 5% | 6 months | 36 months | Yes |
+40% of total supply is locked in vesting at deployment. Vesting is **linear from deployment time** (`startTime`), with no tokens released before the cliff ends. At the end of the cliff, the amount accrued so far becomes releasable.
+
+| Allocation | % | Cliff | Fully vested at | Revocable |
+|------------|---|-------|-----------------|-----------|
+| Team | 15% | 12 months | month 36 (from deploy) | No |
+| Advisors | 5% | 6 months | month 24 (from deploy) | Yes |
+| Treasury | 15% | none | month 48 (from deploy) | No |
+| Ecosystem | 5% | 6 months | month 36 (from deploy) | Yes |
+
+> Note: durations are counted from deployment, not added after the cliff. Example: Team has a 12-month cliff and is fully vested at month 36 (total), so a proportional amount becomes releasable when the cliff ends.
+
 
 ## Deployment (testnet)
 
