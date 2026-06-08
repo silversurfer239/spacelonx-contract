@@ -1,0 +1,86 @@
+Compiled 8 Solidity files successfully (evm target: paris).
+
+
+  SpacelonX (SLX)
+    Déploiement & Supply
+      ✔ a le bon nom et symbole
+      ✔ a 18 décimales
+      ✔ a une supply totale de 10 milliards
+      ✔ attribue 60% au déployeur (40% en vesting)
+      ✔ verrouille 40% dans le contrat (vesting)
+      ✔ crée 4 schedules de vesting
+      ✔ rejette une adresse zéro dans le constructeur
+      ✔ définit le bon owner
+      ✔ exclut le déployeur et les wallets projet de la taxe
+    Taxes
+      ✔ ne prélève PAS de taxe entre deux wallets normaux
+      ✔ prélève la SELL tax (3%) quand on envoie vers une paire AMM
+      ✔ prélève la BUY tax (2%) quand on reçoit depuis une paire AMM
+      ✔ ne prélève pas de taxe si une adresse est exclue
+      ✔ permet à l'owner de changer les taux dans la limite
+      ✔ REJETTE un taux de taxe supérieur au cap de 10%
+      ✔ accepte exactement 10% (le cap)
+      ✔ permet de changer le taxWallet
+    Vesting
+      ✔ ne libère RIEN avant la fin du cliff (Team, cliff 12 mois)
+      1) libère une portion proportionnelle après le cliff (Team)
+      2) libère la totalité après la durée complète (Team, 36 mois)
+      3) permet au bénéficiaire de release ses tokens
+      ✔ REJETTE un release par quelqu'un qui n'est pas le bénéficiaire
+      ✔ REJETTE un release quand il n'y a rien à libérer
+      ✔ permet à l'owner de révoquer un schedule révocable (Advisors)
+      ✔ REJETTE la révocation d'un schedule NON révocable (Team)
+      ✔ REJETTE une double révocation
+      ✔ permet à l'owner de créer un nouveau schedule
+      ✔ REJETTE un nouveau schedule avec cliff > durée
+    Burn
+      ✔ permet à un holder de burn ses tokens
+      ✔ réduit le solde du holder lors du burn
+      ✔ REJETTE un burn supérieur au solde
+    Ownership
+      ✔ REJETTE setTaxRates par un non-owner
+      ✔ REJETTE setAMMPair par un non-owner
+      ✔ REJETTE createVestingSchedule par un non-owner
+      ✔ permet le transfert d'ownership
+      ✔ permet à l'owner de renoncer à l'ownership
+
+
+  33 passing (1s)
+  3 failing
+
+  1) SpacelonX (SLX)
+       Vesting
+         libère une portion proportionnelle après le cliff (Team):
+
+      AssertionError: expected 0 to be above 0.
+      + expected - actual
+
+
+      at Context.<anonymous> (test/SpacelonX.test.js:197:32)
+
+  2) SpacelonX (SLX)
+       Vesting
+         libère la totalité après la durée complète (Team, 36 mois):
+
+      AssertionError: expected 1480821917808219178082191780 to equal 1500000000000000000000000000.
+      + expected - actual
+
+      -1480821917808219178082191780
+      +1500000000000000000000000000
+      
+      at Context.<anonymous> (test/SpacelonX.test.js:205:42)
+
+  3) SpacelonX (SLX)
+       Vesting
+         permet au bénéficiaire de release ses tokens:
+
+      AssertionError: expected 1480821933663115169964485032 to equal 1500000000000000000000000000.
+      + expected - actual
+
+      -1480821933663115169964485032
+      +1500000000000000000000000000
+      
+      at Context.<anonymous> (test/SpacelonX.test.js:213:33)
+
+
+

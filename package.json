@@ -1,0 +1,22 @@
+{
+  "name": "spacelonx-contract",
+  "version": "1.0.0",
+  "description": "SpacelonX (SLX) ERC-20 smart contract with Hardhat tests and Polygon mainnet deployment scripts.",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:polygon": "hardhat run scripts/deploy.js --network polygon",
+    "verify:polygon": "hardhat run scripts/verify.js --network polygon"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
+    "hardhat": "^2.26.3",
+    "dotenv": "^16.4.7",
+    "solc": "^0.8.34"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.3.0"
+  }
+}

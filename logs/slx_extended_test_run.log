@@ -1,0 +1,62 @@
+
+
+  SpacelonX (SLX) - Additional professional checks
+    Constructor guardrails
+      ✔ REJETTE un team wallet zéro
+      ✔ REJETTE un advisors wallet zéro
+      ✔ REJETTE un treasury wallet zéro
+      ✔ REJETTE un ecosystem wallet zéro
+    Admin guardrails
+      ✔ REJETTE setTaxWallet vers adresse zéro
+      ✔ REJETTE setAMMPair avec adresse zéro
+      ✔ permet de désactiver une paire AMM et supprime alors la taxe
+    Vesting accounting
+      ✔ révoquer Advisors après vesting complet transfère 100% au bénéficiaire et 0 au owner
+      ✔ après release complète Team, le releasable retombe à zéro
+
+  SpacelonX (SLX)
+    Déploiement & Supply
+      ✔ a le bon nom et symbole (38ms)
+      ✔ a 18 décimales
+      ✔ a une supply totale de 10 milliards
+      ✔ attribue 60% au déployeur (40% en vesting)
+      ✔ verrouille 40% dans le contrat (vesting)
+      ✔ crée 4 schedules de vesting
+      ✔ rejette une adresse zéro dans le constructeur
+      ✔ définit le bon owner
+      ✔ exclut le déployeur et les wallets projet de la taxe
+    Taxes
+      ✔ ne prélève PAS de taxe entre deux wallets normaux
+      ✔ prélève la SELL tax (3%) quand on envoie vers une paire AMM
+      ✔ prélève la BUY tax (2%) quand on reçoit depuis une paire AMM
+      ✔ ne prélève pas de taxe si une adresse est exclue
+      ✔ permet à l'owner de changer les taux dans la limite
+      ✔ REJETTE un taux de taxe supérieur au cap de 10%
+      ✔ accepte exactement 10% (le cap)
+      ✔ permet de changer le taxWallet
+    Vesting
+      ✔ ne libère RIEN avant la fin du cliff (Team, cliff 12 mois)
+      ✔ libère une portion proportionnelle après le cliff (Team)
+      ✔ libère la totalité après la durée complète (Team, 36 mois)
+      ✔ permet au bénéficiaire de release ses tokens
+      ✔ REJETTE un release par quelqu'un qui n'est pas le bénéficiaire
+      ✔ REJETTE un release quand il n'y a rien à libérer
+      ✔ permet à l'owner de révoquer un schedule révocable (Advisors)
+      ✔ REJETTE la révocation d'un schedule NON révocable (Team)
+      ✔ REJETTE une double révocation
+      ✔ permet à l'owner de créer un nouveau schedule
+      ✔ REJETTE un nouveau schedule avec cliff > durée
+    Burn
+      ✔ permet à un holder de burn ses tokens
+      ✔ réduit le solde du holder lors du burn
+      ✔ REJETTE un burn supérieur au solde
+    Ownership
+      ✔ REJETTE setTaxRates par un non-owner
+      ✔ REJETTE setAMMPair par un non-owner
+      ✔ REJETTE createVestingSchedule par un non-owner
+      ✔ permet le transfert d'ownership
+      ✔ permet à l'owner de renoncer à l'ownership
+
+
+  45 passing (2s)
+
